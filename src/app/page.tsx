@@ -9,13 +9,13 @@ export default function Home() {
           Kanto <span className="text-red-500">Run</span> Generator
         </h1>
         <p className="text-zinc-400 text-lg md:text-xl">
-          Create custom challanges, insane rules and synergistic for your next run in Pokemon Fire Red and Leaf Green!
+          Uma ferramenta que vai te gerar uma run aleatória pra Pokémon Fire Red/Leaf Green, baseada nas suas escolhas de estilo de jogo e desafio.
         </p>
         
         <div className="pt-8">
           <Link href="/quiz">
             <Button size="lg" className="bg-white text-black hover:bg-zinc-200 font-bold text-lg px-8 py-6 rounded-none">
-              Start Run
+              Começar
             </Button>
           </Link>
         </div>

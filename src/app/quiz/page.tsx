@@ -43,8 +43,8 @@ export default function QuizPage() {
         {step === 1 && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="text-center space-y-2 mb-8">
-              <h2 className="text-3xl font-bold tracking-tight">What challenge level are you aiming for?</h2>
-              <p className="text-zinc-400">This sets the rules for your run.</p>
+              <h2 className="text-3xl font-bold tracking-tight">Qual nível de desafio você está buscando?</h2>
+              <p className="text-zinc-400">Isso define as regras para sua run.</p>
             </div>
             <div className="grid gap-4">
               {[1, 2, 3, 4, 5].map((level) => (
@@ -68,14 +68,14 @@ export default function QuizPage() {
         {step === 2 && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="text-center space-y-2 mb-8">
-              <h2 className="text-3xl font-bold tracking-tight">What’s your battle vibe?</h2>
-              <p className="text-zinc-400">This shapes your team stats.</p>
+              <h2 className="text-3xl font-bold tracking-tight">Qual teu tipo de batalha?</h2>
+              <p className="text-zinc-400">Isso define as características da sua equipe.</p>
             </div>
             <div className="grid gap-4">
               {[
-                { id: 'offense', label: 'High Attack', desc: 'Hit hard and move fast.' },
-                { id: 'defense', label: 'Big Wall', desc: 'Tank everything and win by endurance.' },
-                { id: 'balanced', label: 'Balanced', desc: 'A bit of everything to avoid trouble.' }
+                { id: 'offense', label: 'Atacante Forte', desc: 'Bate forte e rápido.' },
+                { id: 'defense', label: 'Tanka Tudo', desc: 'Resiste a tudo e vence por resistência.' },
+                { id: 'balanced', label: 'Balanceado', desc: 'Um pouco de tudo para evitar problemas.' }
               ].map((style) => (
                 <Card 
                   key={style.id}
@@ -95,8 +95,8 @@ export default function QuizPage() {
         {step === 3 && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="text-center space-y-2 mb-8">
-              <h2 className="text-3xl font-bold tracking-tight">Choose your partner</h2>
-              <p className="text-zinc-400">The first of many who will run with you.</p>
+              <h2 className="text-3xl font-bold tracking-tight">Escolha seu parceiro</h2>
+              <p className="text-zinc-400">O primeiro de muitos que vão sofrer com você.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
@@ -124,7 +124,7 @@ export default function QuizPage() {
             variant="ghost"
             className="text-zinc-400 hover:text-white"
           >
-            Back
+            Voltar
           </Button>
           <Button 
             onClick={handleNext}
