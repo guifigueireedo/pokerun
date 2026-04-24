@@ -47,4 +47,3 @@ export function getRandomChallenge(difficulty: number): RunRule {
   const rules = RULES_DB[safeDifficulty];
   return rules[Math.floor(Math.random() * rules.length)];
 }
-

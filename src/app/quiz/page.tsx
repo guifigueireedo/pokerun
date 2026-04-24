@@ -131,7 +131,7 @@ export default function QuizPage() {
             disabled={isNextDisabled}
             className="bg-white text-black hover:bg-zinc-200 font-bold px-8 rounded-none disabled:opacity-50"
           >
-            {step === 3 ? 'Generate Run' : 'Next'}
+            {step === 3 ? 'Gerar Run' : 'Avançar'}
           </Button>
         </div>
 

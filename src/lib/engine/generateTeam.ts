@@ -4,6 +4,14 @@ type Pokemon = typeof kantoDex[0];
 
 const BANNED_IDS = [144, 145, 146, 150, 151];
 
+const STARTER_FINAL_EVO: Record<number, number> = {
+  1: 3,
+  4: 6,
+  7: 9
+};
+
+const ALL_STARTERS_FAMILY = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 function getStyleScore(pokemon: Pokemon, style: 'offense' | 'defense' | 'balanced'): number {
   const { hp, attack, defense, speed } = pokemon.stats;
   
@@ -23,15 +31,23 @@ export function generateRunTeam(
   const team: Pokemon[] = [];
   const usedTypes = new Set<string>();
 
-  const starter = kantoDex.find((p) => p.id === starterId);
+  const finalStarterId = STARTER_FINAL_EVO[starterId] || starterId;
+  
+  const starter = kantoDex.find((p) => p.id === finalStarterId);
   if (!starter) throw new Error("Starter não encontrado!");
   
   team.push(starter);
   starter.types.forEach((t: string) => usedTypes.add(t));
 
+  const starterFamily = [starterId, starterId + 1, starterId + 2];
+  
+  const rivalStartersToBan = ALL_STARTERS_FAMILY.filter(id => !starterFamily.includes(id));
+  
+  const dynamicBans = [...BANNED_IDS, ...rivalStartersToBan];
+
   const eligiblePool = kantoDex.filter(p => 
-    p.id !== starterId && 
-    !BANNED_IDS.includes(p.id)
+    !dynamicBans.includes(p.id) && 
+    !starterFamily.includes(p.id)
   );
 
   eligiblePool.sort((a, b) => getStyleScore(b, playStyle) - getStyleScore(a, playStyle));
@@ -50,7 +66,11 @@ export function generateRunTeam(
   }
 
   if (team.length < 6) {
-    const remaining = kantoDex.filter(p => !team.includes(p) && !BANNED_IDS.includes(p.id));
+    const remaining = kantoDex.filter(p => 
+      !team.includes(p) && 
+      !dynamicBans.includes(p.id) && 
+      !starterFamily.includes(p.id)
+    );
     const shuffledRemaining = shuffle(remaining);
     
     for (const p of shuffledRemaining) {

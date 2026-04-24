@@ -26,8 +26,6 @@ export default function ResultPage() {
     }
   }, [starterId, playStyle, router]);
 
-  // Calcula o time DURANTE a renderização, matando o erro do linter
-  // O useMemo memoriza o resultado e não fica recalculando à toa
   const { team, rule } = useMemo(() => {
     if (!isMounted || !starterId || !playStyle) return { team: [], rule: null };
     return {
@@ -35,7 +33,7 @@ export default function ResultPage() {
       rule: getRandomChallenge(difficulty)
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMounted]); // Só roda de fato quando o isMounted virar true
+  }, [isMounted]);
 
   const handleRestart = () => {
     resetQuiz();
@@ -54,13 +52,11 @@ export default function ResultPage() {
     <main className="flex min-h-screen flex-col items-center bg-zinc-950 text-zinc-50 p-6 pb-20">
       <div className="w-full max-w-4xl space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 mt-10">
         
-        {/* CABEÇALHO */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Sua Run foi Forjada</h1>
           <p className="text-zinc-400">Sobreviva se for capaz.</p>
         </div>
 
-        {/* O DESAFIO */}
         <Card className="border-red-900 bg-red-950/20 shadow-lg shadow-red-900/10">
           <CardHeader>
             <CardTitle className="text-2xl text-red-500 flex items-center gap-2">
@@ -74,7 +70,6 @@ export default function ResultPage() {
           </CardContent>
         </Card>
 
-        {/* O TIME GERADO */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-zinc-100 px-1 border-b border-zinc-800 pb-2">
             Seu Esquadrão
@@ -84,13 +79,12 @@ export default function ResultPage() {
               <Card key={pokemon.id} className="bg-zinc-900 border-zinc-800 overflow-hidden group">
                 <CardContent className="p-4 flex flex-col items-center text-center space-y-3">
                   <div className="relative w-24 h-24 bg-zinc-800 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    {/* Substituímos a <img> raiz pelo <Image> otimizado */}
                     <Image 
                       src={pokemon.sprite} 
                       alt={pokemon.name} 
                       width={80}
                       height={80}
-                      unoptimized // Mata a exigência do Next de configurar o domínio externo
+                      unoptimized
                       className="object-contain drop-shadow-md"
                     />
                   </div>
@@ -116,12 +110,11 @@ export default function ResultPage() {
           </div>
         </div>
 
-        {/* BOTÃO DE REINICIAR */}
         <div className="flex justify-center pt-8">
           <Button 
             onClick={handleRestart}
             variant="outline"
-            className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white px-8 py-6 rounded-none font-bold"
+            className="border-zinc-700 text-black hover:bg-zinc-800 hover:text-white px-8 py-6 rounded-none font-bold"
           >
             Tentar Outra Sorte
           </Button>
