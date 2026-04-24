@@ -37,7 +37,7 @@ export default function QuizPage() {
     (step === 3 && !starterId);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-zinc-950 text-zinc-50 p-6">
+    <main className="flex min-h-screen flex-col items-center justify-center text-zinc-50 p-6">
       <div className="w-full max-w-xl space-y-8">
         
         {step === 1 && (
